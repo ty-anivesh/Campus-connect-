@@ -1,0 +1,77 @@
+{
+  "users": [
+    {
+      "username": "test_student",
+      "password": "password123",
+      "role": "student",
+      "profileImage": null
+    },
+    {
+      "username": "test_faculty",
+      "password": "password123",
+      "role": "faculty",
+      "profileImage": null
+    },
+    {
+      "username": "anivesh",
+      "password": "tyagi",
+      "role": "student",
+      "profileImage": null
+    },
+    {
+      "username": "newuser",
+      "password": "1",
+      "role": "student",
+      "profileImage": null
+    },
+    {
+      "username": "neerajkumar ",
+      "password": "rajasthan",
+      "role": "student",
+      "profileImage": null
+    },
+    {
+      "username": "anas khan",
+      "password": "khan",
+      "role": "student",
+      "profileImage": null
+    }
+  ],
+  "userProfiles_students": [
+    {
+      "id": 1,
+      "username": "test_student",
+      "name": "Test Student",
+      "rollNo": "ST999999",
+      "year": "3",
+      "branch": "Information Technology",
+      "intro": "Hello from the backend!",
+      "skills": [
+        "API",
+        "Backend"
+      ],
+      "email": "test@example.edu"
+    }
+  ],
+  "userProfiles_faculty": [],
+  "userProfiles_alumni": [],
+  "campus_events": [],
+  "notices": [],
+  "subjectsData": {
+    "3": {
+      "Information Technology": [
+        {
+          "id": "IT301",
+          "name": "Design analysis and Algorithm",
+          "type": "Theory"
+        },
+        {
+          "id": "IT302",
+          "name": "Computer Graphic",
+          "type": "Theory"
+        }
+      ]
+    }
+  },
+  "attendance_test_student": {}
+}

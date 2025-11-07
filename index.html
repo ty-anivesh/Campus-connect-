@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Connect | Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="container">
+    <aside class="sidebar collapsed">
+    <div class="sidebar-header">
+    <h2>Campus Connect</h2>
+    </div>
+    <nav class="sidebar-nav">
+    <ul>
+        <li>
+        <a href="index.html" class="active"
+            ><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a
+        >
+        </li>
+        <li>
+        <a href="pages/student.html"
+            ><i class="fas fa-user-graduate"></i> <span>Students</span></a
+        >
+        </li>
+        <li>
+        <a href="pages/faculty.html"
+            ><i class="fas fa-chalkboard-teacher"></i>
+            <span>Faculty</span></a
+        >
+        </li>
+        <li>
+        <a href="pages/alumni.html"
+            ><i class="fas fa-user-tie"></i> <span>Alumni</span></a
+        >
+        </li>
+        <li>
+            <a href="pages/clubs.html"><i class="fas fa-users-cog"></i> <span>Clubs</span></a>
+        </li>
+        <li>
+            <a href="pages/events.html"><i class="fas fa-calendar-alt"></i> <span>Events</span></a>
+        </li>
+        <li>
+        <a href="pages/complaint.html"
+            ><i class="fas fa-clipboard-list"></i>
+            <span>Complaints</span></a
+        >
+        </li>
+        <li>
+        <a href="pages/attendance.html"
+            ><i class="fas fa-user-check"></i> <span>Attendance</span></a
+        >
+        </li>
+        <li>
+        <a href="pages/career.html"
+            ><i class="fas fa-briefcase"></i> <span>Career Portal</span></a
+        >
+        </li>
+        <li>
+        <a href="pages/ai-tools.html"
+            ><i class="fas fa-robot"></i> <span>AI Tools</span></a
+        >
+        </li>
+        <li>
+        <a href="pages/campus-map.html"
+            ><i class="fas fa-map-marked-alt"></i>
+            <span>Campus Map</span></a
+        >
+        </li>
+    </ul>
+    </nav>
+</aside>
+
+    <main class="main-content">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button class="hamburger-menu"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="top-bar-center">
+            <div class="search-container">
+              <input type="text" id="search-input" placeholder="Search students, faculty..." />
+              <i class="fas fa-search search-icon"></i>
+              <div id="search-results-container"></div>
+            </div>
+            <nav class="top-bar-nav">
+              <ul>
+                <li>
+                  <a href="http://172.16.1.1:8090/httpclient.html" target="_blank">REC internet</a>
+                </li>
+                <li>
+                  <a href="https://apps.recbanda.ac.in/ims/frmLogin.aspx" target="_blank">REC ERP</a>
+                </li>
+                <li>
+                  <a href="#" id="aktu-modal-btn">AKTU One-View</a>
+                </li>
+                <li>
+                  <a href="#" id="show-attendance-summary-btn">Attendance</a>
+                </li>
+              </ul>
+            </nav>
+        </div>
+        <div class="top-bar-actions">
+          <div class="theme-toggle">
+            <i class="fas fa-sun light-icon"></i>
+            <i class="fas fa-moon dark-icon"></i>
+          </div>
+          <div class="profile-avatar">
+            <img src="https://via.placeholder.com/40" alt="Profile" />
+            <div class="profile-details">
+              <p class="user-info" id="username">Username (Role)</p>
+              <button id="upload-image-btn">Change Profile Image</button>
+              <input type="file" id="image-input" style="display: none" accept="image/*" />
+              <button id="logout-btn">Log out</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-header">
+        <h2>Welcome to Campus Connect</h2>
+        <p>Your central hub for everything on campus. Here's a quick overview of your day.</p>
+      </div>
+
+      <section class="dashboard-section" id="dashboard-section">
+        <h1>Dashboard</h1>
+        <div class="dashboard-grid">
+          <div class="card todo-card card-tall">
+            <h2>To-Do List</h2>
+            <ul id="todo-list" class="sortable-list"></ul>
+            <form id="todo-form" class="todo-form">
+              <input type="text" id="todo-input" placeholder="Add a new task..." required />
+              <button type="submit">Add</button>
+            </form>
+          </div>
+
+          <div class="card notice-card card-tall">
+            <h2 class="card-header-action">
+              <span>Notice Board</span>
+              <div id="add-notice-container"></div>
+            </h2>
+            <ul id="notice-board"></ul>
+          </div>
+
+          <div class="card quick-links-card card-medium">
+            <h2>Quick Links & Info</h2>
+            <div class="link-item">
+              <i class="fas fa-calendar-check"></i>
+              <h3>Holidays</h3>
+              <p>Check the academic calendar for holidays.</p>
+            </div>
+            <div class="link-item">
+              <i class="fas fa-life-ring"></i>
+              <h3>Helpline</h3>
+              <p>Contact emergency or campus helplines.</p>
+            </div>
+          </div>
+          <div class="card timetable-card card-medium">
+            <h2>Class Timetable</h2>
+            <div id="timetable-content"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="profile-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h2 id="modal-title">Your Profile</h2>
+      <form id="profile-form">
+        <div class="form-group">
+          <label for="profile-name">Full Name</label>
+          <input type="text" id="profile-name" required />
+        </div>
+        <div class="form-group">
+          <label for="profile-rollNo">Roll Number</label>
+          <input type="text" id="profile-rollNo" required />
+        </div>
+        <div class="form-group">
+          <label for="profile-year">Year</label>
+          <select id="profile-year" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="profile-branch">Branch</label>
+          <select id="profile-branch" required>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Electrical Engineering">
+              Electrical Engineering
+            </option>
+            <option value="Mechanical Engineering">
+              Mechanical Engineering
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="profile-intro">Intro (A short bio)</label>
+          <textarea id="profile-intro" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="profile-skills">Skills (comma-separated)</label>
+          <input
+            type="text"
+            id="profile-skills"
+            placeholder="e.g., Python, JavaScript, C++"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="profile-linkedin">LinkedIn Profile URL</label>
+          <input type="url" id="profile-linkedin" />
+        </div>
+        <div class="form-group">
+          <label for="profile-github">GitHub Profile URL</label>
+          <input type="url" id="profile-github" />
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-btn" class="cancel-btn">
+            Cancel
+          </button>
+          <button type="submit" class="save-btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="add-notice-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Add New Notice</h2>
+      <form id="add-notice-form">
+        <div class="form-group">
+          <label for="notice-title">Title / Heading</label>
+          <input type="text" id="notice-title" required />
+        </div>
+        <div class="form-group">
+          <label for="notice-tag">Tag</label>
+          <select id="notice-tag" required>
+            <option value="All">All</option>
+            <option value="Department">Department</option>
+            <option value="Urgent">Urgent</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="notice-file">Attachment (Optional)</label>
+          <input type="file" id="notice-file" />
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-notice-btn" class="cancel-btn">
+            Cancel
+          </button>
+          <button type="submit" class="save-btn">Add Notice</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="aktu-modal" class="modal-overlay">
+    <div class="modal-content aktu-modal-content">
+      <div class="aktu-modal-header">
+        <h2>AKTU One-View</h2>
+        <button id="close-aktu-modal-btn" class="close-modal-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="aktu-modal-body">
+        <div class="aktu-link-item">
+          <div class="aktu-link-icon">📊</div>
+          <div class="aktu-link-details">
+            <h3>Results</h3>
+            <p>Check Semester Results</p>
+          </div>
+          <a
+            href="https://oneview.aktu.ac.in/WebPages/aktu/OneView.aspx"
+            target="_blank"
+            class="modal-link-btn"
+            >View</a
+          >
+        </div>
+        <div class="aktu-link-item">
+          <div class="aktu-link-icon">🙆‍♂️</div>
+          <div class="aktu-link-details">
+            <h3>ERP Login</h3>
+            <p>Login to Erp</p>
+          </div>
+          <a
+            href="https://erp.aktu.ac.in/login.aspx"
+            target="_blank"
+            class="modal-link-btn"
+            >Login</a
+          >
+        </div>
+        <div class="aktu-link-item">
+          <div class="aktu-link-icon">🎫</div>
+          <div class="aktu-link-details">
+            <h3>Admit Card</h3>
+            <p>Download Admit Cards</p>
+          </div>
+          <a
+            href="https://erp.aktu.ac.in/Login.aspx"
+            target="_blank"
+            class="modal-link-btn"
+            >Download</a
+          >
+        </div>
+        <div class="aktu-link-item">
+          <div class="aktu-link-icon">📑</div>
+          <div class="aktu-link-details">
+            <h3>Circular</h3>
+            <p>Download Circular</p>
+          </div>
+          <a
+            href="https://aktu.ac.in/circulars.html"
+            target="_blank"
+            class="modal-link-btn"
+            >View</a
+          >
+        </div>
+        <div class="aktu-link-item nested">
+          <div class="aktu-link-icon">📚</div>
+          <div class="aktu-link-details">
+            <h3>Course Syllabus & PYQs</h3>
+            <div class="nested-item">
+              <p>Access latest syllabus for all courses and branches</p>
+              <a
+                href="https://aktu.ac.in/syllabus.html"
+                target="_blank"
+                class="modal-link-btn"
+                >View Syllabus</a
+              >
+            </div>
+            <div class="nested-item">
+              <p>Download previous year question papers for practice</p>
+              <a
+                href="https://www.abesit.in/library/question-paper-bank/"
+                target="_blank"
+                class="modal-link-btn"
+                >View Papers</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="aktu-link-item">
+          <div class="aktu-link-icon">📖</div>
+          <div class="aktu-link-details">
+            <h3>Library</h3>
+            <p>Digital Library Access</p>
+          </div>
+          <a href="https://ndl.iitkgp.ac.in/" target="_blank" class="modal-link-btn">Access</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="attendance-summary-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Attendance Summary</h2>
+        <button id="close-attendance-summary-modal-btn" class="close-modal-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="card attendance-summary-card" style="box-shadow: none; border: none; padding: 0;">
+            <ul id="attendance-summary-list"></ul>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/career-data.js"></script>
+  <script src="js/ai-tools-data.js"></script>
+  <script type="module" src="js/script.js"></script>
+  <script type="module" src="js/student-profile.js"></script>
+</body>
+
+</html>

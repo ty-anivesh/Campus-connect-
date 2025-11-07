@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Connect | Attendance Log</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar collapsed">
+        <div class="sidebar-header">
+          <h2>Campus Connect</h2>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li>
+              <a href="../index.html"
+                ><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a
+              >
+            </li>
+            <li>
+              <a href="student.html"
+                ><i class="fas fa-user-graduate"></i> <span>Students</span></a
+              >
+            </li>
+            <li>
+              <a href="faculty.html"
+                ><i class="fas fa-chalkboard-teacher"></i>
+                <span>Faculty</span></a
+              >
+            </li>
+            <li>
+              <a href="alumni.html"
+                ><i class="fas fa-user-tie"></i> <span>Alumni</span></a
+              >
+            </li>
+            <li>
+              <a href="clubs.html"
+                ><i class="fas fa-users-cog"></i> <span>Clubs</span></a
+              >
+            </li>
+            <li>
+              <a href="events.html"
+                ><i class="fas fa-calendar-alt"></i> <span>Events</span></a
+              >
+            </li>
+            <li>
+              <a href="complaint.html"
+                ><i class="fas fa-clipboard-list"></i>
+                <span>Complaints</span></a
+              >
+            </li>
+            <li>
+              <a href="attendance.html" class="active"
+                ><i class="fas fa-user-check"></i> <span>Attendance</span></a
+              >
+            </li>
+            <li>
+              <a href="career.html"
+                ><i class="fas fa-briefcase"></i> <span>Career Portal</span></a
+              >
+            </li>
+            <li>
+              <a href="ai-tools.html"
+                ><i class="fas fa-robot"></i> <span>AI Tools</span></a
+              >
+            </li>
+            <li>
+              <a href="campus-map.html"
+                ><i class="fas fa-map-marked-alt"></i>
+                <span>Campus Map</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar">
+          <div class="search-container">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search..."
+              autocomplete="off"
+            />
+            <i class="fas fa-search search-icon"></i>
+            <div id="search-results-container"></div>
+          </div>
+          <div class="top-bar-actions">
+            <div class="theme-toggle">
+              <i class="fas fa-sun light-icon"></i>
+              <i class="fas fa-moon dark-icon"></i>
+            </div>
+            <div class="profile-avatar">
+              <img src="https://via.placeholder.com/40" alt="Profile" />
+              <div class="profile-details">
+                <p class="user-info" id="username">Username (Role)</p>
+                <button id="upload-image-btn">Change Profile Image</button>
+                <button id="edit-profile-btn">Edit Profile</button>
+                <input
+                  type="file"
+                  id="image-input"
+                  style="display: none"
+                  accept="image/*"
+                />
+                <button id="logout-btn">Log out</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="attendance-section">
+          <h1>Daily Attendance Log</h1>
+
+          <div class="attendance-controls card">
+            <div class="form-group">
+              <label for="attendance-date">Select Date to Log</label>
+              <input type="date" id="attendance-date" />
+              <button id="show-stats-btn" class="profile-action-btn" style="margin-left: 15px;">Show Data</button>
+            </div>
+          </div>
+
+          <div id="daily-log-container" class="card">
+            <h2>Log for <span id="selected-date-display">Today</span></h2>
+            <div id="subject-list">
+              <p>Select a date to view subjects.</p>
+            </div>
+            <div class="daily-log-actions">
+                <button id="clear-attendance-btn" class="cancel-btn" style="display: none;">Clear All</button>
+                <button id="save-attendance-btn" class="save-btn" style="display: none;">Save Attendance</button>
+            </div>
+          </div>
+
+        </section>
+      </main>
+    </div>
+
+    <div id="attendance-stats-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Attendance Statistics</h2>
+          <button id="close-stats-modal-btn" class="close-modal-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="stats-controls">
+          <div class="form-group">
+            <label for="stats-start-date">From</label>
+            <input type="date" id="stats-start-date" />
+          </div>
+          <div class="form-group">
+            <label for="stats-end-date">To</label>
+            <input type="date" id="stats-end-date" />
+          </div>
+          <button id="recalculate-stats-btn" class="profile-action-btn">Filter</button>
+        </div>
+        <div class="modal-body" id="stats-modal-body">
+          <p>Loading statistics...</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="edit-subject-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h2 id="edit-subject-modal-title">Edit Subject Name</h2>
+        <form id="edit-subject-form">
+          <input type="hidden" id="edit-subject-id" />
+          <div class="form-group">
+            <label for="edit-subject-name">New Subject Name</label>
+            <input type="text" id="edit-subject-name" required />
+          </div>
+          <div class="modal-actions">
+            <button type="button" id="cancel-edit-subject-btn" class="cancel-btn">
+              Cancel
+            </button>
+            <button type="submit" class="save-btn">Save Name</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/career-data.js"></script>
+    <script src="../js/ai-tools-data.js"></script>
+    <script type="module" src="../js/script.js"></script>
+    <script type="module" src="../js/attendance.js"></script>
+  </body>
+</html>

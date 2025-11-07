@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Connect | Faculty Directory</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar collapsed">
+    <div class="sidebar-header">
+    <h2>Campus Connect</h2>
+    </div>
+    <nav class="sidebar-nav">
+    <ul>
+        <li>
+        <a href="../index.html"
+            ><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a
+        >
+        </li>
+        <li>
+        <a href="student.html"
+            ><i class="fas fa-user-graduate"></i> <span>Students</span></a
+        >
+        </li>
+        <li>
+        <a href="faculty.html" class="active"
+            ><i class="fas fa-chalkboard-teacher"></i>
+            <span>Faculty</span></a
+        >
+        </li>
+        <li>
+            <a href="alumni.html"><i class="fas fa-user-tie"></i> <span>Alumni</span></a>
+        </li>
+        <li>
+            <a href="clubs.html"><i class="fas fa-users-cog"></i> <span>Clubs</span></a>
+        </li>
+        <li>
+            <a href="events.html"><i class="fas fa-calendar-alt"></i> <span>Events</span></a>
+        </li>
+        <li>
+        <a href="complaint.html"
+            ><i class="fas fa-clipboard-list"></i>
+            <span>Complaints</span></a
+        >
+        </li>
+        <li>
+        <a href="attendance.html"
+            ><i class="fas fa-user-check"></i> <span>Attendance</span></a
+        >
+        </li>
+        <li>
+        <a href="career.html"
+            ><i class="fas fa-briefcase"></i> <span>Career Portal</span></a
+        >
+        </li>
+        <li>
+        <a href="ai-tools.html"
+            ><i class="fas fa-robot"></i> <span>AI Tools</span></a
+        >
+        </li>
+        <li>
+        <a href="campus-map.html"
+            ><i class="fas fa-map-marked-alt"></i>
+            <span>Campus Map</span></a
+        >
+        </li>
+    </ul>
+    </nav>
+</aside>
+
+      <main class="main-content">
+        <header class="top-bar">
+          <div class="search-container">
+            <input
+              type="text"
+              id="search-input" 
+              placeholder="Search..."
+            />
+            <i class="fas fa-search search-icon"></i>
+            <div id="search-results-container"></div>
+          </div>
+          <div class="top-bar-actions">
+            <div class="theme-toggle">
+              <i class="fas fa-sun light-icon"></i>
+              <i class="fas fa-moon dark-icon"></i>
+            </div>
+            <div class="profile-avatar">
+              <img src="https://via.placeholder.com/40" alt="Profile" />
+              <div class="profile-details">
+                <p class="user-info" id="username">Username (Role)</p>
+                <button id="upload-image-btn" class="btn btn-primary">Change Profile Image</button>
+                <button id="edit-profile-btn">Edit Profile</button>
+                <input
+                  type="file"
+                  id="image-input"
+                  style="display: none"
+                  accept="image/*"
+                />
+                <button id="logout-btn" class="btn btn-danger">Log out</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="faculty-directory-section">
+          <h1>Faculty Directory</h1>
+          
+          <div id="profile-action-container"></div>
+
+          <div class="filter-controls">
+            <label for="branch-filter">Filter by Branch:</label>
+            <select id="branch-filter">
+              <option value="all">All</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Electrical Engineering">
+                Electrical Engineering
+              </option>
+              <option value="Mechanical Engineering">
+                Mechanical Engineering
+              </option>
+            </select>
+          </div>
+          <div id="faculty-container" class="card-container"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="profile-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h2 id="modal-title">Your Profile</h2>
+       <form id="profile-form">
+  <div class="form-group">
+    <label for="profile-name">Full Name</label>
+    <input type="text" id="profile-name" required />
+  </div>
+  <div class="form-group">
+    <label for="profile-designation">Designation</label>
+    <input type="text" id="profile-designation" placeholder="e.g., Professor, Head of Department" required />
+  </div>
+  <div class="form-group">
+    <label for="profile-email">Email</label>
+    <input type="email" id="profile-email" placeholder="e.g., your.name@example.edu" required />
+  </div>
+  <div class="form-group">
+    <label for="profile-branch">Branch</label>
+    <select id="profile-branch" required>
+      <option value="Information Technology">Information Technology</option>
+      <option value="Electrical Engineering">
+        Electrical Engineering
+      </option>
+      <option value="Mechanical Engineering">
+        Mechanical Engineering
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="profile-research">Research Interests</label>
+    <textarea id="profile-research" rows="3" placeholder="e.g., AI, Power Systems, Robotics" required></textarea>
+  </div>
+  <div class="modal-actions">
+    <button type="button" id="cancel-btn" class="btn btn-secondary">
+      Cancel
+    </button>
+    <button type="button" id="delete-btn" class="btn btn-danger">
+      Delete
+    </button>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+</form>
+      </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <!-- The faculty.js and faculty-profile.js scripts are not using modules yet, so they are loaded normally -->
+    <script src="../js/career-data.js"></script>
+    <script src="../js/ai-tools-data.js"></script>
+    <script src="../js/faculty.js"></script> 
+    <script src="../js/faculty-profile.js"></script> 
+    <script type="module" src="../js/script.js"></script>
+
+  </body>
+</html>
